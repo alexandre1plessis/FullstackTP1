@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Étudiants</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>Liste des Étudiants</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de Naissance</th>
+            <th>Email</th>
+            <th>Matricule</th>
+        </tr>
+
+        <!-- Utilisez JavaScript pour charger les données depuis le serveur -->
+        <script>
+            fetch('/read.php')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(student => {
+                        document.write(`
+                            <tr>
+                                <td>${student.id}</td>
+                                <td>${student.nom}</td>
+                                <td>${student.prenom}</td>
+                                <td>${student.date_naissance}</td>
+                                <td>${student.email}</td>
+                                <td>${student.matricule}</td>
+                            </tr>
+                        `);
+                    });
+                });
+        </script>
+    </table>
+</body>
+</html>
